@@ -1,4 +1,4 @@
-import axios, { CreateAxiosDefaults } from 'axios';
+import axios, { CreateAxiosDefaults, AxiosError } from 'axios';
 
 import { authApi } from '~/bundles/auth/api/auth-api';
 import { getAccessToken, removeFromStorage } from '~/bundles/auth/api/auth-token.service';
@@ -6,7 +6,7 @@ import { getAccessToken, removeFromStorage } from '~/bundles/auth/api/auth-token
 import { errorCatch } from './catch-error';
 
 const options: CreateAxiosDefaults = {
-    baseURL: 'http://localhost:3000/api/',
+    baseURL: process.env.VITE_APP_PROXY_SERVER_URL || 'http://localhost:3000/api/',
     headers: {
         "Content-Type": 'application/json',
     },
@@ -43,8 +43,8 @@ axiosWithAuth.interceptors.response.use(
                 authApi.getNewTokens();
                 
                 return axiosWithAuth.request(originalRequest)
-            } catch (error) {
-                if(errorCatch(error) === 'jwt expired') removeFromStorage()
+            } catch (error: unknown) {
+                if(errorCatch(error as AxiosError<{ message: string}>) === 'jwt expired') removeFromStorage()
             }
         }
         throw error
