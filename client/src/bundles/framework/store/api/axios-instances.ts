@@ -6,7 +6,7 @@ import { getAccessToken, removeFromStorage } from '~/bundles/auth/api/auth-token
 import { errorCatch } from './catch-error';
 
 const options: CreateAxiosDefaults = {
-    baseURL: process.env.VITE_APP_PROXY_SERVER_URL || 'http://localhost:3000/api/',
+    baseURL:   'http://localhost:3000/api/' || 'http://zb-test.com/api/' , 
     headers: {
         "Content-Type": 'application/json',
     },
