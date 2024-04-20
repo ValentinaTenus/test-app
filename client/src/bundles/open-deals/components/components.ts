@@ -1,0 +1,1 @@
+export { OpenDealsItem } from './open-deal-item/open-deal-item';

@@ -1,0 +1,34 @@
+.label {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.error {
+    margin-top: 2px;
+    color: var(--color-error-red);
+    font-size: var(--font-size-secondary-text);
+    text-align: right;
+}
+
+.label__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 13px;
+}
+
+.label__name {
+    color: var(--color-black);
+    font-family: var(--font-family-main);
+    font-weight: var(--font-weight-label);
+    font-size: var(--font-size-main-text);
+    line-height: 20px;
+}
+
+.label__hint {
+    margin-left: 7px;
+    color: var(--color-black);
+    font-weight: var(--font-weight-label);
+    line-height: 20px;
+}

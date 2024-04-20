@@ -1,0 +1,18 @@
+.open_deals_page {
+    padding: 25px 15px;
+    min-height: 100vh;
+}
+
+.open_deals_items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.open_deals_header {
+    color: var(--color-gold);
+    font-weight: var(--font-weight-title);
+    font-family: var( --font-family-main);
+    font-size: var(--font-size-title-h2);
+    margin-bottom: 10px;
+}

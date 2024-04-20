@@ -1,0 +1,35 @@
+.header {
+    min-height: 45px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px 30px;
+    background-color: var(--bg-color-header);
+}
+
+.header_button_container {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    max-width: 400px;
+}
+
+.header__button {
+    max-width: 150px;
+    width: 100px;
+    padding: 11px 0;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.header__login_button,
+.header__logout_button {
+    background-color: var(--bg-color-header);
+    color: var(--color-gold);
+    border: 1px solid var(--color-gold);
+}
+
+.header__sign_up_button{
+    background-color: var(--color-gold);
+    color: var(--color-white);
+}

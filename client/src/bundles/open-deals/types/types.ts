@@ -1,0 +1,1 @@
+export { type OpenDeal } from './open-deal.type';

@@ -1,0 +1,47 @@
+.registration__header {
+    align-self: flex-start;
+    margin-bottom: 15px;
+}
+
+.registration__title {
+    margin: 0;
+    color: var(--color-black);
+    font-weight: var( --font-weight-label);
+    font-size: var(--font-size-title-h2);
+    font-family: var(--font-family-main);
+    line-height: 34px;
+}
+
+.registration__message {
+    margin: 0;
+    font-weight: var(--font-weight-title);
+    font-size: var(--font-size-main-text);
+    line-height: 22px;
+}
+
+.registration__link {
+    padding-left: 4px;
+    color: var( --color-gold);
+}
+
+.registration__form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.registration__form__button {
+    height: 44px;
+    margin-top: 5px;
+    font-family: var(--font-family-main);
+    font-weight: var(--font-weight-label);
+    color: var(--color-white);
+    background-color: var(--color-gold);
+    text-align: center;
+    border-radius: 5px;
+}
+
+
+

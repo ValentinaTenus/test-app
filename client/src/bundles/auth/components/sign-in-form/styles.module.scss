@@ -1,0 +1,52 @@
+.login__header {
+    align-self: flex-start;
+    margin-bottom: 15px;
+}
+
+.login__title {
+    margin: 0;
+    color: var(--color-black);
+    font-weight: var( --font-weight-label);
+    font-size: var(--font-size-title-h2);
+    font-family: var(--font-family-main);
+    line-height: 34px;
+}
+
+.login__message {
+    margin: 0;
+    font-weight: var(--font-weight-title);
+    font-size: var(--font-size-main-text);
+    line-height: 22px;
+}
+
+.login__link {
+    padding-left: 4px;
+    color: var( --color-gold);
+}
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.login__form__button {
+    height: 44px;
+    margin-top: 5px;
+    font-family: var(--font-family-main);
+    font-weight: var(--font-weight-label);
+    color: var(--color-white);
+    background-color: var(--color-gold);
+    text-align: center;
+    border-radius: 5px;
+}
+
+.forgot_password {
+    text-align: end;
+    color: var(--color-gold);
+    font-family: var(--font-family-secondary);
+    font-weight: var(--font-weight-title);
+    font-size: var(--font-size-main-text);
+}
