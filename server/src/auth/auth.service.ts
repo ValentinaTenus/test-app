@@ -80,24 +80,26 @@ export class AuthService {
     const expiresIn = new Date();
     expiresIn.setDate(expiresIn.getDate() + RefreshTokenExpireDays);
 
+    const domain = process.env.NODE_ENV === 'production' ? 'test-app-api-v2nv.onrender.com' : 'localhost';
+
     response.cookie(RefreshTokenName, refreshToken, {
       httpOnly: true,
-      domain: 'localhost',
+      domain: domain,
       expires: expiresIn,
-      secure: false,
-      //lax if production
-      sameSite: 'none',
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'lax' : 'none',
     });
   }
 
   removeRefreshTokenFromResponse(response: Response) {
+    const domain = process.env.NODE_ENV === 'production' ? 'test-app-api-v2nv.onrender.com' : 'localhost';
+    
     response.cookie(RefreshTokenName, '', {
       httpOnly: true,
-      domain: 'localhost',
+      domain: domain,
       expires: new Date(0),
-      secure: false,
-      //lax if production
-      sameSite: 'none',
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'lax' : 'none',
     });
   }
 

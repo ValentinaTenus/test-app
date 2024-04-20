@@ -9,7 +9,7 @@ const isLocal = process.env.NODE_ENV === 'development';
 
 const baseURL = isLocal
   ? 'http://localhost:3000/api/' 
-  : 'https://test-app-api-v2nv.onrender.com/api'; 
+  : 'https://test-app-api-v2nv.onrender.com/api/'; 
 
 const options: CreateAxiosDefaults = {
     baseURL: baseURL, 
