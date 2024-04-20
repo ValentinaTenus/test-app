@@ -12,8 +12,9 @@ const getAccessToken = () => {
 }
 
 const saveTokenStorage = (accessToken: string) => {
+    const domain = process.env.NODE_ENV === 'production' ? 'zb-task.onrender.com' : 'localhost';
     Cookies.set(Tokens.ACCESS_TOKEN, accessToken, {
-        domain: 'localhost',
+        domain: domain,
         sameSite: 'strict',
         expires: 1
     })
