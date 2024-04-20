@@ -1,5 +1,6 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
+import { openDealsSeeds } from 'prisma/seeds/open-deals.seeds';
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit {
@@ -9,19 +10,19 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
 
   async onModuleInit() {
     await this.$connect();
-    // await this.seedDatabase();
+    await this.seedDatabase();
   }
 
-  // async seedDatabase() {
-  //   try {
-  //     await this.openDeals.createMany({
-  //       data: openDealsSeeds,
-  //     });
-  //     console.log('Seed data inserted successfully');
-  //   } catch (error) {
-  //     console.error('Error seeding database:', error);
-  //   }
-  // }
+  async seedDatabase() {
+    try {
+      await this.openDeals.createMany({
+        data: openDealsSeeds,
+      });
+      console.log('Seed data inserted successfully');
+    } catch (error) {
+      console.error('Error seeding database:', error);
+    }
+  }
 
   async close() {
     await this.$disconnect();
