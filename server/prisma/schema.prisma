@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id String @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  email String @unique
+  name String
+  password String
+
+  @@map("users")
+}
+
+model OpenDeals {
+  id String @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  buildingName String @map("building_name")
+  price String
+  ticketPrice String @map("ticket_price")
+  yield String
+  daysLeft Int @map("days_left")
+  sold String
+
+  @@map("open_deals")
+}
