@@ -11,7 +11,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
   app.use(cookieParser());
   app.enableCors({
-    origin: ['http://localhost:3001', 'http://zb-test.com'],
+    origin: ['http://localhost:3001', 'https://zb-task.onrender.com'],
     credentials: true,
     exposedHeaders: 'set-cookie',
   });
