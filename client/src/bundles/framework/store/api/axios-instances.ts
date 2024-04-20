@@ -6,7 +6,7 @@ import { getAccessToken, removeFromStorage } from '~/bundles/auth/api/auth-token
 import { errorCatch } from './catch-error';
 
 const options: CreateAxiosDefaults = {
-    baseURL:   'http://localhost:3000/api/' || 'http://zb-test.com/api/' , 
+    baseURL:   'http://localhost:3000/api/' || 'https://test-app-api-v2nv.onrender.com' , 
     headers: {
         "Content-Type": 'application/json',
     },
