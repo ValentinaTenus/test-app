@@ -73,7 +73,6 @@ import { type UserSignInRequestDto, type UserSignUpRequestDto } from '../validat
 
     const  getUser = createAsyncThunk(
         'user/profile', async () => {
-            console.log('get user')
           const { data }  = await authApi.getUser();
 
           return data;
