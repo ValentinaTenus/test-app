@@ -10,9 +10,18 @@
 }
 
 .open_deals_header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.open_deals_heading {
     color: var(--color-gold);
     font-weight: var(--font-weight-title);
     font-family: var( --font-family-main);
     font-size: var(--font-size-title-h2);
     margin-bottom: 10px;
+}
+
+.open_deals__home_button {
+    color: var(--color-gold);
 }
