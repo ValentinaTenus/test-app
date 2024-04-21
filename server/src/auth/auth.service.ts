@@ -87,7 +87,7 @@ export class AuthService {
       domain: domain,
       expires: expiresIn,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'lax' : 'none',
+      sameSite: 'none',
     });
   }
 
@@ -99,7 +99,7 @@ export class AuthService {
       domain: domain,
       expires: new Date(0),
       secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'lax' : 'none',
+      sameSite: 'none',
     });
   }
 

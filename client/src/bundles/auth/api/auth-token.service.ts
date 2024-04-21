@@ -16,7 +16,8 @@ const saveTokenStorage = (accessToken: string) => {
     Cookies.set(Tokens.ACCESS_TOKEN, accessToken, {
         domain: domain,
         sameSite: 'strict',
-        expires: 1
+        expires: 1,
+        secure: true,
     })
 }
 
