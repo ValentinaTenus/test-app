@@ -12,7 +12,6 @@ import {
 import { AuthService } from './auth.service';
 import { LoginDto, RegistrationDto } from './dto/dto';
 import { Request, Response } from 'express';
-import { RefreshTokenName } from './constants/refresh-token-name';
 
 @Controller('auth')
 export class AuthController {
