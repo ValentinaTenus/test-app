@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from '~/bundles/common/hooks/hooks';
 import { OpenDealsItem } from '../../components/components.js';
 import { actions as openDealsActions } from '../../store/index.js';
 import styles from './styles.module.scss';
+import { Spinner } from '~/bundles/common/components/components.js';
 
 const OpenDeals = () => {
     const dispatch = useAppDispatch();
@@ -37,14 +38,16 @@ const OpenDeals = () => {
                 </Link>
             </div>
             <div className={styles.open_deals_items}>
-                { dataStatus === DataStatus.PENDING && (
-                    <div>Loading...</div>
+                { dataStatus === DataStatus.PENDING
+                ? (
+                    <div className={styles.open_deals__spinner}>
+                        <Spinner />
+                    </div>
+                ) : (
+                        openDeals?.map((item, index) => (
+                           <OpenDealsItem key={index} item={item} image={ openDealsImages[index] }/>
+                        ))
                 )}
-                { openDeals && (
-                     openDeals?.map((item, index) => (
-                        <OpenDealsItem key={index} item={item} image={ openDealsImages[index] }/>
-                  )))
-                }
             </div>
         </div>
     )
