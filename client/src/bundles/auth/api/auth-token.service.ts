@@ -6,23 +6,25 @@ enum Tokens  {
 }
 
 const getAccessToken = () => {
-    const accessToken = Cookies.get(Tokens.ACCESS_TOKEN)
-
-    return accessToken || null
+    // const accessToken = Cookies.get(Tokens.ACCESS_TOKEN)
+    const accessToken = localStorage.getItem(Tokens.ACCESS_TOKEN);
+    return accessToken || null;
 }
 
 const saveTokenStorage = (accessToken: string) => {
-    const domain = process.env.NODE_ENV === 'production' ? '.onrender.com' : 'localhost';
-    Cookies.set(Tokens.ACCESS_TOKEN, accessToken, {
-        domain: domain,
-        sameSite: 'none',
-        expires: 1,
-        secure: true,
-    })
+    // const domain = process.env.NODE_ENV === 'production' ? '.onrender.com' : 'localhost';
+    // Cookies.set(Tokens.ACCESS_TOKEN, accessToken, {
+    //     domain: domain,
+    //     sameSite: 'none',
+    //     expires: 1,
+    //     secure: true,
+    // })
+    localStorage.setItem(Tokens.ACCESS_TOKEN, accessToken);
 }
 
 const removeFromStorage = () => {
-    Cookies.remove(Tokens.ACCESS_TOKEN)
+    // Cookies.remove(Tokens.ACCESS_TOKEN)
+    localStorage.removeItem(Tokens.ACCESS_TOKEN);
 }
 
 export { getAccessToken, saveTokenStorage, removeFromStorage, Tokens };

@@ -27,9 +27,12 @@ export class AuthController {
   ) {
     const { refreshToken, ...response } = await this.authService.login(dto);
 
-    this.authService.addRefreshTokenToResponse(res, refreshToken);
+    // this.authService.addRefreshTokenToResponse(res, refreshToken);
 
-    return response;
+    return res.json({
+      ...response,
+      refreshToken,
+    });
   }
 
   @UsePipes(new ValidationPipe())
@@ -42,26 +45,45 @@ export class AuthController {
   @HttpCode(200)
   @Post('login/access-token')
   async getNewTokens(@Req() req: Request, @Res() res: Response) {
-    const refreshTokenFromCookie = req.cookies[RefreshTokenName];
+    // const refreshTokenFromCookie = req.cookies[RefreshTokenName];
+    // if (!refreshTokenFromCookie) {
+    //   this.authService.removeRefreshTokenFromResponse(res);
+    //   throw new UnauthorizedException('Refresh token not passed');
+    // }
 
-    if (!refreshTokenFromCookie) {
-      this.authService.removeRefreshTokenFromResponse(res);
-      throw new UnauthorizedException('Refresh token not passed');
+    // const { refreshToken, ...response } = await this.authService.getNewTokens(
+    //   refreshTokenFromCookie,
+    // );
+    // this.authService.addRefreshTokenToResponse(res, refreshToken);
+
+    // return response;
+    const refreshTokenFromHeader = req.headers['authorization'];
+
+    if (!refreshTokenFromHeader) {
+      throw new UnauthorizedException('Authorization header missing');
     }
 
-    const { refreshToken, ...response } = await this.authService.getNewTokens(
-      refreshTokenFromCookie,
-    );
-    this.authService.addRefreshTokenToResponse(res, refreshToken);
+    const [, refreshToken] = refreshTokenFromHeader.split(' ');
 
-    return response;
+    const { refreshToken: newRefreshToken, ...response } = await this.authService.getNewTokens(
+      refreshToken,
+    );
+
+    return res.json({
+      ...response,
+      refreshToken: newRefreshToken,
+    });
   }
 
   @HttpCode(200)
   @Post('logout')
   async logOut(@Res({ passthrough: true }) res: Response) {
-    this.authService.removeRefreshTokenFromResponse(res);
+    // this.authService.removeRefreshTokenFromResponse(res);
 
-    return true;
+    // return true;
+
+    return res.json({
+      success: true,
+    });
   }
 }
