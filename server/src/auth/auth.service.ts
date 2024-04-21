@@ -6,14 +6,9 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { verify } from 'argon2';
-import { Response } from 'express';
 
 import { UserService } from 'src/user/user.service';
 import { LoginDto, RegistrationDto } from './dto/dto';
-import {
-  RefreshTokenExpireDays,
-  RefreshTokenName,
-} from './constants/constants';
 
 @Injectable()
 export class AuthService {
@@ -74,33 +69,6 @@ export class AuthService {
     if (!isValid) throw new UnauthorizedException('Invalid password');
 
     return user;
-  }
-
-  addRefreshTokenToResponse(response: Response, refreshToken: string) {
-    const expiresIn = new Date();
-    expiresIn.setDate(expiresIn.getDate() + RefreshTokenExpireDays);
-
-    const domain = process.env.NODE_ENV === 'production' ? '.onrender.com' : 'localhost';
-
-    response.cookie(RefreshTokenName, refreshToken, {
-      httpOnly: true,
-      domain: domain,
-      expires: expiresIn,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'none',
-    });
-  }
-
-  removeRefreshTokenFromResponse(response: Response) {
-    const domain = process.env.NODE_ENV === 'production' ? '.onrender.com' : 'localhost';
-    
-    response.cookie(RefreshTokenName, '', {
-      httpOnly: true,
-      domain: domain,
-      expires: new Date(0),
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'none',
-    });
   }
 
   async getNewTokens(refreshToken: string) {

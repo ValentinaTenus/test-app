@@ -17,7 +17,7 @@ import { Request, Response } from 'express';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @UsePipes(new ValidationPipe()) //to make validation works, check dto
+  @UsePipes(new ValidationPipe()) 
   @HttpCode(200)
   @Post('login')
   async login(
@@ -25,8 +25,6 @@ export class AuthController {
     @Res({ passthrough: true }) res: Response,
   ) {
     const { refreshToken, ...response } = await this.authService.login(dto);
-
-    // this.authService.addRefreshTokenToResponse(res, refreshToken);
 
     return res.json({
       ...response,
@@ -44,18 +42,7 @@ export class AuthController {
   @HttpCode(200)
   @Post('login/access-token')
   async getNewTokens(@Req() req: Request, @Res() res: Response) {
-    // const refreshTokenFromCookie = req.cookies[RefreshTokenName];
-    // if (!refreshTokenFromCookie) {
-    //   this.authService.removeRefreshTokenFromResponse(res);
-    //   throw new UnauthorizedException('Refresh token not passed');
-    // }
-
-    // const { refreshToken, ...response } = await this.authService.getNewTokens(
-    //   refreshTokenFromCookie,
-    // );
-    // this.authService.addRefreshTokenToResponse(res, refreshToken);
-
-    // return response;
+  
     const refreshTokenFromHeader = req.headers['authorization'];
 
     if (!refreshTokenFromHeader) {
@@ -77,9 +64,6 @@ export class AuthController {
   @HttpCode(200)
   @Post('logout')
   async logOut(@Res({ passthrough: true }) res: Response) {
-    // this.authService.removeRefreshTokenFromResponse(res);
-
-    // return true;
 
     return res.json({
       success: true,
