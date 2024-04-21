@@ -37,12 +37,14 @@ const OpenDeals = () => {
                 </Link>
             </div>
             <div className={styles.open_deals_items}>
-                {openDeals && dataStatus === DataStatus.FULFILLED 
-                    ? ( openDeals?.map((item, index) => (
-                        <OpenDealsItem key={index} item={item} image={openDealsImages[index]}/>
-                      )))
-                    : <div>There are not open deals</div>
-            }
+                { dataStatus === DataStatus.PENDING && (
+                    <div>Loading...</div>
+                )}
+                { openDeals && (
+                     openDeals?.map((item, index) => (
+                        <OpenDealsItem key={index} item={item} image={ openDealsImages[index] }/>
+                  )))
+                }
             </div>
         </div>
     )
