@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useCallback } from 'react';
 
-import { FormGroup, Input } from '~/bundles/common/components/components';
-import { AppRoute } from '~/bundles/common/enums/enums';
-import { useAppDispatch, useAppForm, useFormFieldCreator } from '~/bundles/common/hooks/hooks';
+import { FormGroup, Input, Spinner } from '~/bundles/common/components/components';
+import { AppRoute, DataStatus } from '~/bundles/common/enums/enums';
+import { useAppDispatch, useAppForm, useFormFieldCreator, useAppSelector } from '~/bundles/common/hooks/hooks';
 
 import { DEFAULT_SIGN_UP_PAYLOAD } from '../../constants/constants';
 import { actions as authActions } from '../../store/index';
@@ -16,6 +16,10 @@ type Properties = {
 
 const SignUpForm: React.FC<Properties> = ({ onSubmit }) => {
     const dispatch = useAppDispatch();
+
+    const { dataStatus } = useAppSelector(({ auth }) => ({
+        dataStatus: auth.dataStatus
+    }));
 
     const { control, errors, handleSubmit } =
         useAppForm<UserSignUpRequestDto>({
@@ -83,7 +87,10 @@ const SignUpForm: React.FC<Properties> = ({ onSubmit }) => {
                     type='submit'
                     className={styles.registration__form__button}
                 >
-                    Sign Up
+                    {dataStatus === DataStatus.PENDING
+                    ? (
+                        <Spinner />
+                    ) :  <span>Sign Up</span>}
                 </button>
 
                 <p className={styles.registration__message}>
