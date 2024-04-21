@@ -5,14 +5,10 @@ import { getAccessToken, removeFromStorage } from '~/bundles/auth/api/auth-token
 
 import { errorCatch } from './catch-error';
 
-const isLocal = process.env.NODE_ENV === 'development'; 
-
-const baseURL = isLocal
-  ? 'http://localhost:3000/api/' 
-  : 'https://test-app-api-v2nv.onrender.com/api/'; 
+const baseURL = import.meta.env.VITE_SERVER_URL;
 
 const options: CreateAxiosDefaults = {
-    baseURL: baseURL, 
+    baseURL: `${baseURL}/api/`, 
     headers: {
         "Content-Type": 'application/json',
     },
