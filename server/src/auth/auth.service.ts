@@ -80,7 +80,7 @@ export class AuthService {
     const expiresIn = new Date();
     expiresIn.setDate(expiresIn.getDate() + RefreshTokenExpireDays);
 
-    const domain = process.env.NODE_ENV === 'production' ? 'test-app-api-v2nv.onrender.com' : 'localhost';
+    const domain = process.env.NODE_ENV === 'production' ? '.onrender.com' : 'localhost';
 
     response.cookie(RefreshTokenName, refreshToken, {
       httpOnly: true,
