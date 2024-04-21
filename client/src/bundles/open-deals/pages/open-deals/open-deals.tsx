@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import { HomeIcon } from 'lucide-react';
 
 import { openDealsImages } from '~/assets/images/open-deals/open-deals-images.js';
+import { AppRoute } from '~/bundles/common/enums/app-routes.enum.js';
 import { DataStatus } from '~/bundles/common/enums/data-status.js';
 import { useAppDispatch, useAppSelector } from '~/bundles/common/hooks/hooks';
 
 import { OpenDealsItem } from '../../components/components.js';
 import { actions as openDealsActions } from '../../store/index.js';
 import styles from './styles.module.scss';
-import { AppRoute } from '~/bundles/common/enums/app-routes.enum.js';
 
 const OpenDeals = () => {
     const dispatch = useAppDispatch();
